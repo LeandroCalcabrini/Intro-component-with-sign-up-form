@@ -4,11 +4,12 @@ import './App.css'
 function App() {
 
  const [data, setData] = useState({
-  nombre:'',
-  apellido:'',
+  firstName:'',
+  lastName:'',
   email:'',
   password:'',
  })
+
  
   return (
     <>
@@ -19,7 +20,8 @@ function App() {
         id='firstName'
         placeholder='First Name'
         name='firsName'
-        value={data.firstName}/>
+        value={data.firstName}
+        />
         <span></span>
       </div>
       <div>

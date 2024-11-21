@@ -1,62 +1,109 @@
 import { useState } from 'react';
 import './App.css'
 
-function App() {
+ function App (){
 
- const [data, setData] = useState({
-  firstName:'',
-  lastName:'',
-  email:'',
-  password:'',
- })
+  //Estado para el nuevo usuario
+  const [nuevoUsuario,setNuevoUsuario] = useState({
+    nombre:'',
+    apellido:'',
+    contraseña:'',
+    email:'',
+  });
 
- 
-  return (
-    <>
-    <form action="">
-      <div>
-        <input 
-        type="text"
-        id='firstName'
-        placeholder='First Name'
-        name='firsName'
-        value={data.firstName}
-        />
-        <span></span>
-      </div>
-      <div>
-        <input 
-        type="text"
-        id='lastName'
-        placeholder='Last Name'
-        name='lastName'
-        value={data.lastName}/>
-        <span></span>
-      </div>
-      <div>
-        <input
-        type="email"
-        id='email' 
-        placeholder='Email Adress'
-        name='email'
-        value={data.email}/>
-        <span></span>
-      </div>
-      <div>
-        <input 
-        type="password"
-        id='password'
-        name='password'
-        placeholder='Password' 
-        value={data.password}/>
-        <span></span>
-      </div>
+  //Estado para la lista de Usuarios
+  const [listaUsuarios,setListaUsuarios] = useState([]);
 
-    <button>CLAIM FOR FREE TRAIL</button>
-    <p>By clicking the button, you are agreeing yto our <span>Terms and Services</span></p>
+  const [errores,setErrores] = useState({
+    nombre:false,
+    apellido:false,
+    contraseña:false,
+    email:false,
+  });
 
-    </form>
-    </>
+  const handleChange = (e) => {
+    const {name,value} = e.target;
+    setNuevoUsuario({...nuevoUsuario,[name]:value});
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const nuevosErrores = {
+      nombre: nuevoUsuario.nombre === '',
+      apellido: nuevoUsuario.apellido === '',
+      contraseña: nuevoUsuario.contraseña === '',
+      email: nuevoUsuario.email === '' || !nuevoUsuario.email.includes('@'),
+    };
+
+    if(Object.values(nuevosErrores).includes(true)){
+      setErrores({...errores, ...nuevosErrores})
+    }else{
+      setListaUsuarios([...listaUsuarios , nuevoUsuario]);
+      setNuevoUsuario({
+        nombre:'',
+        apellido:'',
+        contraseña:'',
+        email:'',
+      })
+    };
+
+  };
+
+  const mensajeError = (campo) =>{
+    if(errores[campo] == true){
+      return(
+        <p>
+          Por favor, ingrese su {campo}
+        </p>
+      )
+    }else{
+      return null;
+    }
+  };
+
+  console.log(errores)
+
+  return(
+   <>
+   <form
+   onSubmit={handleSubmit}
+   >
+    <input 
+    type="text" 
+    name='nombre'
+    value={nuevoUsuario.nombre}
+    placeholder='Nombre'
+    onChange={handleChange}/>
+    {mensajeError('nombre')}
+    <input 
+    type="text" 
+    name='apellido'
+    value={nuevoUsuario.apellido}
+    placeholder='Apellido'
+    onChange={handleChange}/>
+    {mensajeError('apellido')}
+    <input 
+    type="password" 
+    name='contraseña'
+    value={nuevoUsuario.contraseña}
+    placeholder='Contraseña'
+    onChange={handleChange}/>
+    {mensajeError('contraseña')}
+    <input 
+    type="text" 
+    name='email'
+    value={nuevoUsuario.email}
+    placeholder='Email'
+    onChange={handleChange}/>
+    {mensajeError('email')}
+    <button type='submit'>SUBMIT</button>
+   </form>
+   </>
   )
+
+    
 }
 export default App
+
+

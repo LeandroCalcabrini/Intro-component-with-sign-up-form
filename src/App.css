@@ -28,13 +28,16 @@ body{
     padding: 100px;
 }
 
-
 .container{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 70px;
 }
+
+
+
+/* lado izquierdo */
 
 .container-left{
     width: 50%;
@@ -43,7 +46,6 @@ body{
     gap: 20px;
 
 }
-
 
 h1{
     color: white;

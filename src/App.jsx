@@ -45,6 +45,13 @@ function App (){
         contraseña:'',
         email:'',
       })
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Gracias ${nuevoUsuario.nombre} ${nuevoUsuario.apellido} por registrarte!`,
+        showConfirmButton: false,
+        timer: 2500
+      });
     };
   };
 

@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import './App.css'
 
-
-
 function App (){
 
   const [nuevoUsuario,setNuevoUsuario] = useState({
@@ -65,7 +63,7 @@ function App (){
           mensaje = `Ingrese su ${campo}`
         }
       }
-      return <p>{mensaje}</p>  
+      return <p className='text-error'>{mensaje}</p>  
     }
     else return null
   }; 
@@ -73,43 +71,64 @@ function App (){
 
   return(
    <>
-   <form
-   onSubmit={handleSubmit}
+   <section className='container'>
+    <div className='container-left'>
+      <h1>Learn to code by watching others</h1>
+      <p className='text'>See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable</p>
+    </div>
+    <div className='container-right'>
+      <div className='container-textfree'>
+      <p className='text'><span className='text-span'>Try it free 7 days</span>then $20/mo. thereafter.</p>  
+      </div>
+
+    <form
+    onSubmit={handleSubmit}
    >
     <input 
+    className={errores.nombre ? 'active' : ''}
     type="text" 
     name='nombre'
     value={nuevoUsuario.nombre}
     placeholder='Nombre'
-    onChange={handleChange}/>
+    onChange={handleChange}
+    />
     {mensajeError('nombre')}
-    <input 
+    <input
+    className={errores.apellido ? 'active' : ''} 
     type="text" 
     name='apellido'
     value={nuevoUsuario.apellido}
     placeholder='Apellido'
-    onChange={handleChange}/>
+    onChange={handleChange}
+    />
     {mensajeError('apellido')}
     <input 
+    className={errores.contraseña ? 'active' : ''}
     type="password" 
     name='contraseña'
     value={nuevoUsuario.contraseña}
     placeholder='Contraseña'
-    onChange={handleChange}/>
+    onChange={handleChange}
+    />
     {mensajeError('contraseña')}
     <input 
+    className={errores.email ? 'active' : ''}
     type="text" 
     name='email'
     value={nuevoUsuario.email}
     placeholder='Email'
-    onChange={handleChange}/>
+    onChange={handleChange}
+    />
     {mensajeError('email')}
-    <button type='submit'>SUBMIT</button>
-   </form>
+    <button
+    className='btn'
+     type='submit'>SUBMIT</button>
+    <p>By clicking the button, you are agreeing to our <span>Terms and Services</span></p>
+    </form>     
+    </div>
+   </section>
    </>
-  )
-
-    
+  ) 
 }
 export default App
 

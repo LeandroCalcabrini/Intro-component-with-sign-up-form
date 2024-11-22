@@ -1,12 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
+
+:root{
+    --Red: hsl(0, 100%, 74%);
+    --Green: hsl(154, 59%, 51%);
+    --Blue: hsl(248, 32%, 49%);
+    --Dark-Blue: hsl(249, 10%, 26%);
+    --Grayish-Blue: hsl(246, 25%, 77%);
+}
+
+body{
+    min-height: 100vh;
+    background: var(--Red);
+    background-image:url(../src/assets/img/bg-intro-desktop.png);
+}
+
+#root{
+    height: 100vh;
+    display: grid;
+    place-content: center;
+    padding: 100px;
+}
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+}
+
+.container-left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+
+h1{
+    color: white;
+    font-size: 3rem;
+    line-height: 3rem;
+}
+
+.text{
+    color: white;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+/* lado derecho */
+.container-right{
+    width: 50%;
+}
+
+.container-textfree{
+    background-color: var(--Blue);
+    padding: 15px 5px;
+    text-align: center;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px 0px var(--Dark-Blue);
+}
+
 form{
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
-    gap: 5px;
+    gap: 12px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px 0px var(--Dark-Blue);
+}
+
+input{
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px var(--Grayish-Blue);
+    border-color:var(--Grayish-Blue);
+}
+
+
+input.active{
+    border-color:var(--Red);
+    background-image: url(../src/assets/img/icon-error.svg);
+    background-repeat: no-repeat;
+    background-position:  right 15px center;
+}
+
+input.active::placeholder{
+    color: var(--Red);
+}
+
+.text-error{
+    color: var(--Red);
+    transition: 5s ease;
+    font-size: 13px;
+    text-align: right;
+}
+
+.btn{
+    background-color: var(--Green);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: hsl(154, 70%, 71%);
 }

@@ -5,7 +5,6 @@ import './App.css'
 
 function App (){
 
-  //Estado para el nuevo usuario
   const [nuevoUsuario,setNuevoUsuario] = useState({
     nombre:'',
     apellido:'',
@@ -13,10 +12,8 @@ function App (){
     email:'',
   });
 
-  //Estado para la lista de Usuarios
   const [listaUsuarios,setListaUsuarios] = useState([]);
 
-  // Estado para la validacion de los errores
   const [errores,setErrores] = useState({
     nombre:false,
     apellido:false,
@@ -24,29 +21,24 @@ function App (){
     email:false,
   });
 
-  //funcion obtener el valor de los input
   const handleChange = (e) => {
     const {name,value} = e.target;
     setNuevoUsuario({...nuevoUsuario,[name]:value});
   };
 
-  //funcion al hacer click en el btn del formulario
   const handleSubmit = (e) => {
-    e.preventDefault(); // sacamos las funciones por defecto
+    e.preventDefault();
 
-
-
-    const nuevosErrores = { // hacemos un objeto booleano, para verificar que el usuario ingrese texto e imail para poder setear la lista de usuarios
+    const nuevosErrores = {
       nombre: nuevoUsuario.nombre === '',
       apellido: nuevoUsuario.apellido === '',
       contraseña: nuevoUsuario.contraseña === '',
       email: nuevoUsuario.email === '' || !nuevoUsuario.email.includes('@'),
     };
 
-    if(Object.values(nuevosErrores).includes(true)){ // si algun valor de alguna propiedad del objeto nuevoErrores, es = "true"...
-      setErrores({...errores, ...nuevosErrores}) // seteamos el estado errores, copiando el valor de errores con los d enuevoserrores.
-   
-    }else{ // si todo son false, es decir, que hay datos en los imput, y hay un imail valido, se procede a setear la listadeUsuarios
+    if(Object.values(nuevosErrores).includes(true)){ 
+      setErrores({...errores, ...nuevosErrores})    
+    }else{ 
       setErrores({...errores, ...nuevosErrores});
       setListaUsuarios([...listaUsuarios , nuevoUsuario]);
       setNuevoUsuario({ // volvemos en blanco el formulario
@@ -59,18 +51,24 @@ function App (){
   };
 
   const mensajeError = (campo) =>{ 
+    let mensaje = '';
+
     if(errores[campo]){
-      return(
-        <p>
-          Por favor, ingrese su {campo}
-        </p>
-      )
-    }else{
-      return null;
+      if(campo !== 'email'){
+        mensaje = `Ingrese su ${campo}`
+      }
+      else if(campo === 'email'){
+        if(!nuevoUsuario.email.includes('@')){
+          mensaje = 'Ingrese un email valido'
+        }
+        if(!nuevoUsuario.email){
+          mensaje = `Ingrese su ${campo}`
+        }
+      }
+      return <p>{mensaje}</p>  
     }
-  };
-
-
+    else return null
+  }; 
 
 
   return(

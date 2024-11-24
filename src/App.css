@@ -147,9 +147,34 @@ input.active::placeholder{
     font-weight: 700;
 }
 
-@media(max-width:480px){
+
+@media(max-width:768px){
     #root{
         padding: 50px;
+    }
+    .container{
+        flex-direction: column;
+    }
+    h1{
+        text-align: center;
+    }
+
+    .text{
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .container-left{
+        width: auto;
+    }
+
+    .container-right{
+        width: auto;
+    }
+}
+@media(max-width:480px){
+    #root{
+        padding: 100px 50px;
     }
 
     .container{
@@ -163,6 +188,7 @@ input.active::placeholder{
 
     .text{
         text-align: center;
+        font-size: 12px;
     }
 
     .container-left{

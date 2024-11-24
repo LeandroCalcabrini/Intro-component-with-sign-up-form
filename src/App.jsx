@@ -35,7 +35,7 @@ function App (){
     };
 
     if(Object.values(nuevosErrores).includes(true)){ 
-      setErrores({...errores, ...nuevosErrores})    
+      setErrores({...errores, ...nuevosErrores}) 
     }else{ 
       setErrores({...errores, ...nuevosErrores});
       setListaUsuarios([...listaUsuarios , nuevoUsuario]);
@@ -46,7 +46,7 @@ function App (){
         email:'',
       })
       Swal.fire({
-        position: "top-end",
+        position: "top",
         icon: "success",
         title: `Gracias ${nuevoUsuario.nombre} ${nuevoUsuario.apellido} por registrarte!`,
         showConfirmButton: false,
@@ -85,7 +85,7 @@ function App (){
     </div>
     <div className='container-right'>
       <div className='container-textfree'>
-      <p className='text'><span className='text-span'>Try it free 7 days</span>then $20/mo. thereafter.</p>  
+      <p className='text'><span className='text-span'>Try it free 7 days </span>then $20/mo. thereafter</p>  
       </div>
 
     <form
@@ -110,6 +110,15 @@ function App (){
     />
     {mensajeError('apellido')}
     <input 
+    className={errores.email ? 'active' : ''}
+    type="text" 
+    name='email'
+    value={nuevoUsuario.email}
+    placeholder={errores.email ? 'email@example/com' : 'Email'}
+    onChange={handleChange}
+    />
+    {mensajeError('email')}
+    <input 
     className={errores.contraseña ? 'active' : ''}
     type="password" 
     name='contraseña'
@@ -118,19 +127,10 @@ function App (){
     onChange={handleChange}
     />
     {mensajeError('contraseña')}
-    <input 
-    className={errores.email ? 'active' : ''}
-    type="text" 
-    name='email'
-    value={nuevoUsuario.email}
-    placeholder='Email'
-    onChange={handleChange}
-    />
-    {mensajeError('email')}
     <button
     className='btn'
-     type='submit'>SUBMIT</button>
-    <p>By clicking the button, you are agreeing to our <span>Terms and Services</span></p>
+     type='submit'>CLAIM YOUR FREE TRIAL</button>
+    <p className='text-terms'>By clicking the button, you are agreeing to our <span className='text-span-terms'>Terms and Services</span></p>
     </form>     
     </div>
    </section>
